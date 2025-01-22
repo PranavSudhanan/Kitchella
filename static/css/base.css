@@ -1,0 +1,30 @@
+.category-card:hover, .product-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+.card {
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    opacity: 80%;
+    border-radius: 25px;
+}
+  
+.category-card:hover .card-img-top, .product-card:hover .card-img-top {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    z-index: 2;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.top-products-section {
+    background: #fceabb; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #fceabb, #f8b500); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, rgba(255, 183, 0, 0.589), rgba(219, 202, 154, 0.7)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.nav-link {
+    color: black;
+}

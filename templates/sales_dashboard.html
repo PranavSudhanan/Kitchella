@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Sales Dashboard</h1>
+    <hr>
+    <h2>Welcome, {{ salesperson.name }}</h2>
+    <p>Total Sales: ₹{{ total_sales }}</p>
+    <hr>
+    <h3>Your Transactions</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Transaction ID</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.id }}</td>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.status }}</td>
+                <td>₹{{ transaction.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

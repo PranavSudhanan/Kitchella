@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <table id="productsTable" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Order number</th>
+                {%if request.user.is_staff %}
+                    <th>Customer</th>
+                    <th>customer id</th>
+                {%endif%}
+                <th>Date</th>
+                <th>Total Cost</th>
+                <th>Reciept</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr>
+                <td>
+                    {{transaction.id}}
+                </td>
+                {% if request.user.is_staff %}
+                <td>
+                    <a href="{% url 'transaction_history_customer' transaction.customer.pk %}">{{transaction.customer.username}}</a>
+                </td>
+                <td>
+                    {{transaction.customer.pk}}
+                </td>
+                {%endif%}
+                <td>
+                    {{transaction.date_ordered}}
+                </td>
+                <td>
+                    ₹{{transaction.total_price}}
+                </td>
+                <td>
+                    {{transaction.reciept}}
+                </td>
+                <td>
+                    {{transaction.status}}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Shipping Information{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Shipping Information</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Assuming you're using crispy forms for styling -->
+        <button type="submit" class="btn btn-primary">Continue to Payment</button>
+    </form>
+</div>
+{% endblock %}

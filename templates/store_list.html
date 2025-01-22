@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <table id="productsTable" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Manager</th>
+                <th>Profit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store in stores_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'store_page' store.id %}">{{ store.address }}</a>
+                </td>
+                <td>
+                    {{ store.manager.name }}
+                </td>
+                <td>
+                    ₹{{ store.profit }}
+                </td>
+                <td>
+                    <a href="{% url 'delete_store' store.id %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#productsTable').DataTable({
+            'columnDefs': [
+                { 'orderable': false, 'targets': [0, 2] } // Disable sorting on the first and third columns
+            ]
+        });
+    });
+</script>
+{% endblock %}

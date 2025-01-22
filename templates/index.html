@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% load rating_stars %}
+
+{% block title %}Kitchella{% endblock %}
+
+{% block load_css %}
+<link rel="stylesheet" href="{% static "css/index.css" %}">
+<style>
+    /* Full-width styling for banner images */
+    .full-width-banner img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+{% endblock %}
+
+{% block load_js %}
+<script src="{% static "js/index.js" %}"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 d-flex flex-column justify-content-center">
+                <div class="glass-panel">
+                    <h1 class="display-4">Flavours Your Wellness</h1>
+                    <p class="lead my-4">For a Healthy Life, Healthy Food</p>
+                    <a href="{% url 'product_list' %}" class="btn btn-dark btn-lg">SHOP NOW</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Banner Image 1 -->
+<div class="banner-section full-width-banner py-5">
+    <img src="{% static 'img/Multi_Millet_Meal.png' %}" class="img-fluid" alt="Banner 1">
+</div>
+
+<!-- Top Products Section -->
+<div class="top-products-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center">Top Products</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for product in top_products %}
+                <div class="col">
+                    <a href="{% url 'product_page' product.id %}" class="text-decoration-none">
+                        <div class="card d-flex flex-column h-100 product-card">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" class="card-img-top product-image" alt="{{ product.name }}">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text"><small class="text-muted">Price: ₹{{ product.price }}</small></p>
+                                <p class="card-text"><small class="text-muted">In Stock: {{ product.total_stock }}</small></p>
+                                <p class="card-text"><small class="text-muted text-warning text-nowrap">Average Rating: {% rating_stars product.avg_rating %}</small></p>
+                            </div>
+                            <div class="card-footer mt-auto">
+                                <small class="text-muted">Total Sold: {{ product.total_sold }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Banner Image 2 -->
+<div class="banner-section full-width-banner py-5">
+    <img src="{% static 'img/Multi_Millet_Meal_Dates.png' %}" class="img-fluid" alt="Banner 2">
+</div>
+{% endblock %}

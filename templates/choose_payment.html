@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Choose Payment Method{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Payment Options for {{ product.name }}</h2>
+    <p>Price: ₹{{ product.price }}</p>
+    
+    <!-- Add your payment methods here -->
+    <form method="post" action="{% url 'process_payment' product.id %}">
+        {% csrf_token %}
+        <div>
+            <label>
+                <input type="radio" name="payment_method" value="credit_card" required>
+                Credit Card
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="radio" name="payment_method" value="paypal" required>
+                PayPal
+            </label>
+        </div>
+        <!-- Add more payment options as needed -->
+        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+    </form>
+</div>
+{% endblock %}

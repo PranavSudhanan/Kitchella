@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Products</h2>
+    <ul>
+        {% for product in object_list %}
+            <li>
+                <img src= "product_images\"+{{product.image}} >
+                stock {{product.stock}}
+                <a href="{% url 'product_page' product.id %}">{{ product.name }} </a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

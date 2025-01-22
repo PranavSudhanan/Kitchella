@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Amount each business has purchased of {{product.name}}</h1>
+    <table id="categoryTable" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Business Name</th>
+                <th>Business ID</th>
+                <th>Total Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for business in businesses %}
+            <tr>
+                <td>{{ business.name }}</td>
+                <td>{{ business.id }}</td>
+                <td>{{ business.amount_purchased }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#categoryTable').DataTable({
+            'columnDefs': [
+                { 'orderable': false, 'targets': [1] } // Disable sorting on the first and third columns
+            ]
+        });
+    });
+</script>
+{% endblock %}

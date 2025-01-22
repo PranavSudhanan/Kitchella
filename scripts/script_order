@@ -1,0 +1,8 @@
+run scripts in this order 
+region_script.py
+store_script.py
+salesperson_script.py
+insert_category.py
+insert_customers.py
+insert_product.py
+insert_inventory.py

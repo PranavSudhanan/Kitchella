@@ -1,0 +1,19 @@
+python manage.py shell < scripts/region_script.py
+echo "completed region_script"
+python manage.py shell < scripts/store_script.py
+echo "completed store_script"
+python manage.py shell < scripts/salesperson_script.py
+echo "completed salesperson_script"
+python manage.py shell < scripts/insert_category.py
+echo "completed category_script"
+python manage.py shell < scripts/insert_customers.py
+echo "completed customers_script"
+python manage.py shell < scripts/insert_product.py
+echo "completed product_script"
+python manage.py shell < scripts/insert_inventory.py
+echo "completed inventory_script"
+python manage.py shell < scripts/insert_transactions.py
+echo "completed transactions_script"
+python scripts/insert_product_images.py
+echo "completed product_images_script"
+

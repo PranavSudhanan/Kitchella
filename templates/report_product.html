@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Product Sales Report</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Units Sold</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in product_sales %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.sold }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

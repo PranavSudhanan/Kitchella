@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load rating_stars %}
+
+{% block content %}
+<div class="container mt-4">
+    <table id="productsTable" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Rating</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products_list %}
+            <tr>
+                <td class="text-center">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid product-card">
+                    {% else %}
+                    <p>No image available</p>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{% url 'product_page' product.id %}">{{ product.name }}</a>
+                </td>
+                <td>
+                    {{ product.total_stock }}
+                </td>
+                <td class="text-nowrap text-warning">
+                    <div class="d-none">{{ product.avg_rating }}</div>
+                    {% rating_stars product.avg_rating %}
+                </td>
+                <td>
+                    ₹{{ product.price }}
+                </td>                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#productsTable').DataTable({
+            'columnDefs': [
+            {'orderable': false, 'targets': [0], 'width': '200px'},
+            {'targets': [3], 'width': '75px'},
+            ]
+        });
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var searchQuery = urlParams.get('q');
+
+        if (searchQuery) {
+            // Find the DataTable search input using jQuery
+            var dataTableInput = $('#productsTable_filter').find('input[type="search"]');
+
+            if (dataTableInput.length) {
+                dataTableInput.val(searchQuery);
+
+                // Trigger the search in DataTable
+                $('#productsTable').DataTable().search(searchQuery).draw();
+            }
+        }
+    });
+</script>
+{% endblock %}

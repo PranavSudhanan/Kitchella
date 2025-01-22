@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Your Cart</h1>
+
+            <!-- Cart Items Summary -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    Order Summary
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for product in cart_list %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ product.inventory.product.name }}
+                        <span>
+                            <span class="badge bg-primary rounded-pill me-3">Qty: {{ product.quantity }}</span>
+                            ₹{{ product.subtotal }}
+                        </span>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">Your cart is empty.</li>
+                    {% endfor %}
+                </ul>
+                <div class="card-footer">
+                    <strong>Total: ₹{{ total }}</strong>
+                </div>
+            </div>
+
+            <!-- Checkout Form -->
+            <h2>Checkout</h2>
+            <form method="post">
+                {% csrf_token %}
+                <!-- {% include 'stripe_payment.html'} -->
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary">Submit Order</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

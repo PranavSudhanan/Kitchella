@@ -1,0 +1,3 @@
+*.csv
+# db.sqlite3
+# media/product_images/*
