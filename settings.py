@@ -22,7 +22,7 @@ SECRET_KEY = 'e1x9w2c3e4v5b6n7m8o9p0zaxsfqadsvzxcvlkn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["kitchella.onrender.com",""]
 
 # Application definition
 INSTALLED_APPS = [
