@@ -4,7 +4,7 @@ certifi==2024.12.14
 charset-normalizer==3.4.1
 colorama==0.4.6
 comm==0.2.2
-crispy_forms
+crispy-forms-bootstrap2==2024.1
 debugpy==1.8.11
 decorator==5.1.1
 Django==5.1.4
